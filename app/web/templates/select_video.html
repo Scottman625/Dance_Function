@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Select a Video</h1>
+  <form method="post">
+    {% csrf_token %}
+    <select name="video_selection" onchange="this.form.submit()">
+      <option value="">-- Select a video --</option>
+      {% for video in videos %}
+        <option value="{{ video.id }}" {% if selected_video and video.id == selected_video.id %}selected{% endif %}>{{ video.title }}</option>
+      {% endfor %}
+    </select>
+  </form>
+  {% if selected_video %}
+    <h2>{{ selected_video.title }}</h2>
+    <p>{{ selected_video.description }}</p>
+    <video width="320" height="240" controls>
+      <source src="{{ selected_video.video_file.url }}" type="{{ selected_video.video_file.content_type }}">
+      Your browser does not support the video tag.
+    </video>
+    <form>
+      <button type="button" name="submit" class="btn btn-primary"  onclick="location.href='{% url 'dance_detect' %}?video_id={{selected_video.id}}'">遊玩此影片</button>
+    </form>
+  {% endif %}
+{% endblock %}

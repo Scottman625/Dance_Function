@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="jumbotron text-center" style="color:white;background-color: black;" >
+    <h1 >Welcome to Dance Function <br></h1>
+    <p class="lead">Browse and watch your favorite videos!</p>
+    <a href="{% url 'upload_video' %}" class="btn btn-primary btn-lg">上傳您的影片</a>
+  </div>
+  <div class="row">
+    {% for video in videos %}
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow" style="background-color: black;">
+          <video class="card-img-top" src="{{ video.video_file.url }}" poster="{{ video.thumbnail.url }}" controls></video>
+          <div class="card-body">
+            <h5 class="card-title" style="color:white">{{ video.title }}</h5>
+            <p class="card-text" style="color:white">{{ video.description }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted" style="color:white">{{ video.uploaded_at }}</small>
+              <div class="btn-group">
+                <a href="{% url 'dance_detect' %}?video_id={{video.id}}" class="btn btn-sm btn-outline-secondary">遊玩此影片</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>尚未有影片上傳</p>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{{video.title}}</h1>
+  <!-- <div class="row"> -->
+    <!-- <div class="col-5">
+      <div class="card mb-4 box-shadow">
+        <video  src="{{ video.video_file.url }}" poster="{{ video.thumbnail.url }}" width="800" controls></video>
+      </div>
+    </div> -->
+    <!-- <div class="col-1"></div>
+    <div class="col-5"> -->
+      <img id="myImage" src="{% url 'video_feed' %}?video_id={{video.id}}" onload="checkImageEmpty()">
+    <!-- </div> -->
+
+  <!-- </div> -->
+  <script>
+    var video_id = "{{video_id}}"
+    function onImageEmpty() {
+        console.log('Image is empty');
+        window.localStorage.clear();
+        window.location.href = `{% url 'game_score' %}?video_id=${video_id}`;
+        // Do something when the image is empty
+    }
+
+    function checkImageEmpty() {
+        
+
+        var timer = setInterval(function() {
+        var img = document.getElementById('myImage');
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        var empty = true;
+        for (var i = 0; i < data.length; i += 4) {
+            if (data[i] !== 0 || data[i + 1] !== 0 || data[i + 2] !== 0) {
+                empty = false;
+                break;
+            }
+        }
+
+        console.log(data[i],data[i+1],data[i+2])
+
+        if (empty) {
+            onImageEmpty();
+
+        }
+    }, 1000);
+        
+    }
+</script>
+
+{% endblock %}
