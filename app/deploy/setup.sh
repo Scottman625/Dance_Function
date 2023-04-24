@@ -17,6 +17,7 @@ PROJECT_PATH='/usr/local/apps/app'
 # # Create project directorycd
 # mkdir -p $PROJECT_BASE_PATH
 # git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
+cd $PROJECT_PATH
 git pull
 # # Create virtual environment
 # mkdir -p $PROJECT_BASE_PATH/env
