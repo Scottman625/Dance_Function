@@ -6,6 +6,8 @@ from modelCore.tasks.tasks import *
 from django.shortcuts import render
 from django.http.response import StreamingHttpResponse
 from web.camera import  VideoCamera
+import logging
+logger = logging.getLogger(__name__)
 
 
 def gen(camera):
@@ -20,9 +22,10 @@ def video_feed(request):
     video = Video.objects.get(id=video_id)
     dic = video.data
     video_path = video.video_file.path
+    logger.info('123')
+    logger.info(video_path)
     response = StreamingHttpResponse(gen(VideoCamera(dic=dic,video_path=video_path,video_id=video_id),),
 					content_type='multipart/x-mixed-replace; boundary=frame')
-
 
     return response
     
