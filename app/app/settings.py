@@ -106,11 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # 設置預設檔案系統
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = 'AKIA4N73ISGHY3TEF5FP'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'dance-function'
-AWS_S3_REGION_NAME = 'ap-northeast-1'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = 'AKIA4N73ISGHY3TEF5FP'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'dance-function'
+# AWS_S3_REGION_NAME = 'ap-northeast-1'
 
 AUTH_USER_MODEL = 'modelCore.User'
 
