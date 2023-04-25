@@ -86,8 +86,7 @@ class Video(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(default='')
     upload_date = models.DateTimeField(default=timezone.now)
-    video_file = models.FileField(upload_to='videos/')
-    trans_video = models.FileField(null=True,blank=True)
+    video_file = models.FileField(upload_to='videos/', max_length=255)
     data = models.JSONField(null=True,blank=True)
     total_score = models.IntegerField(null=True,blank=True)
 

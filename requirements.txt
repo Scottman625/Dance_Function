@@ -17,5 +17,8 @@ numpy
 pandas
 mediapipe 
 opencv-python
+# google-api-python-client
+django-storages
+boto3
 
 

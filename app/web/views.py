@@ -8,31 +8,18 @@ from django.http.response import StreamingHttpResponse
 from web.camera import  VideoCamera
 
 
-
 def gen(camera):
         while True:
             # try:
                 frame = camera.get_frame(camera)
                 yield (b'--frame\r\n'
                         b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-            # except:
-            #     print('failed')
-                # return HttpResponse('finish')
-
-# def video_feed(request):
-# 	return StreamingHttpResponse(gen(VideoCamera()),
-# 					content_type='multipart/x-mixed-replace; boundary=frame')
         
 def video_feed(request):
     video_id =  request.GET.get('video_id')
     video = Video.objects.get(id=video_id)
     dic = video.data
     video_path = video.video_file.path
-    # print('test')
-    # i = request.session.get('i')
-    # list = request.session.get('list')
-    # DIC = request.session.get('DIC')
-    # print(i,DIC)
     response = StreamingHttpResponse(gen(VideoCamera(dic=dic,video_path=video_path,video_id=video_id),),
 					content_type='multipart/x-mixed-replace; boundary=frame')
 
@@ -49,6 +36,7 @@ def upload_video(request):
         form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
             video = form.save()
+            video.save()
             video_id = video.id
             store_video_data(video_id, 0)
             return redirect('home')

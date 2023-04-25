@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'modelCore',
     'web',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -102,6 +105,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# 設置預設檔案系統
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'AKIA4N73ISGHY3TEF5FP'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'dance-function'
+AWS_S3_REGION_NAME = 'ap-northeast-1'
+
 AUTH_USER_MODEL = 'modelCore.User'
 
 # Internationalization
@@ -114,6 +124,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 
 STATIC_ROOT = 'static/'
 # Static files (CSS, JavaScript, Images)
