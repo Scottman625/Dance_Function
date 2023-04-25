@@ -7,6 +7,8 @@ from modelCore.tasks.tasks import calculate_angle
 from modelCore.models import *
 import json
 import datetime
+import logging
+logger = logging.getLogger(__name__)
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose.Pose()
@@ -195,10 +197,11 @@ class VideoCamera(object):
     def get_frame(self,dic):
         # print(len(self.dic["LEFTELBOW"]))
         count = self.count
+        logger.info('1',count)
         while True:
             ret1, frame1 = self.video.read()
             ret2, frame2 = self.cap.read()
-            
+            logger.info('2',ret2)
             if ret2:
                 
                 count += 1
