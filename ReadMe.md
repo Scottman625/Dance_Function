@@ -102,7 +102,7 @@ Password (again): ************
 python app/manage.py runserver
 ```
 
-啟動後，您可以打開瀏覽器，訪問 [http://127.0.0.1:8000/](http://127.0.0.1:8000/) 來查看您的應用程式。若要登入管理後台，請訪問 [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) 並使用剛剛創建的超級用戶帳戶登入。
+啟動後，您可以打開瀏覽器，訪問 [http://127.0.0.1:8000/web/home](http://127.0.0.1:8000/web/home) 來查看您的應用程式。若要登入管理後台，請訪問 [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) 並使用剛剛創建的超級用戶帳戶登入。
 
 ## 注意事項
 
@@ -230,7 +230,7 @@ After completing the above steps, you can start Django's development server to r
 python app/manage.py runserver
 ```
 
-Once the server is running, you can open your browser and visit [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view your application. To access the admin backend, visit [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) and log in using the superuser account you just created.
+Once the server is running, you can open your browser and visit [http://127.0.0.1:8000/web/home](http://127.0.0.1:8000/web/home) to view your application. To access the admin backend, visit [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) and log in using the superuser account you just created.
 
 ## Important Notes
 
