@@ -1,0 +1,24 @@
+name: Security Scan
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  security_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 檢出代碼
+        uses: actions/checkout@v3
+
+      - name: 取得最近的變更
+        run: |
+          git fetch origin main
+          git diff --unified=0 origin/main > changes.diff
+
+      - name: 拉取並運行 Docker 資安掃描
+        run: |
+          docker run --rm -v $(pwd):/repo scottman625/secure-scan
+
