@@ -20,5 +20,5 @@ jobs:
 
       - name: 拉取並運行 Docker 資安掃描
         run: |
-          docker run --rm -v $(pwd):/repo scottman625/secure-scan
+          docker run --rm -v $(pwd):/repo scottman625/my-security-scanner
 
