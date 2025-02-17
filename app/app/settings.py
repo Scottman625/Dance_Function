@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'modelCore',
     'web',
     'storages',
+    'user',
 ]
 
 MIDDLEWARE = [
