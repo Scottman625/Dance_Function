@@ -15,8 +15,8 @@ jobs:
 
       - name: 取得最近的變更
         run: |
-          git fetch origin main
-          git diff --unified=0 origin/main > changes.diff
+          git fetch origin master
+          git diff --unified=0 origin/master > changes.diff
 
       - name: 拉取並運行 Docker 資安掃描
         run: |
