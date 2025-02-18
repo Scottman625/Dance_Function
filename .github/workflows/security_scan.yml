@@ -39,7 +39,7 @@ jobs:
           fi
 
       - name: 上傳 SARIF 報告作為 Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: security-report
           path: ./security_report.sarif
