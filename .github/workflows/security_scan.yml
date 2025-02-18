@@ -20,6 +20,9 @@ jobs:
           git fetch origin master
           git diff -p HEAD~1 > changes.diff
 
+      - name: 確保 security_report.sarif 是一個文件
+        run: touch security_report.sarif
+
       - name: 拉取並運行 Docker 資安掃描
         run: |
           docker run --rm \
