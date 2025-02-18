@@ -22,9 +22,12 @@ jobs:
 
       - name: 拉取並運行 Docker 資安掃描
         run: |
-          docker run --rm -v $(pwd)/changes.diff:/app/changes.diff scottman625/my-security-scanner /app/changes.diff
+          docker run --rm \
+            -v $(pwd)/changes.diff:/app/changes.diff \
+            -v $(pwd)/security_report.sarif:/app/security_report.sarif \
+            scottman625/my-security-scanner /app/changes.diff
 
       - name: 上傳至 GitHub Security Alerts
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: /app/security_report.sarif
+          sarif_file: ./security_report.sarif
