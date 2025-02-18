@@ -22,4 +22,4 @@ jobs:
 
       - name: 拉取並運行 Docker 資安掃描
         run: |
-          docker run --rm -v $(pwd):/app scottman625/my-security-scanner /app/changes.diff
+          docker run --rm -v $(pwd)/changes.diff:/app/changes.diff scottman625/my-security-scanner /app/changes.diff
