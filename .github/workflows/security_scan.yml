@@ -38,6 +38,12 @@ jobs:
             echo '{ "version": "2.1.0", "runs": [{ "tool": { "driver": { "name": "My Security Scanner", "version": "1.0.0" } }, "results": [] }] }' > security_report.sarif
           fi
 
+      - name: 上傳 SARIF 報告作為 Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-report
+          path: ./security_report.sarif
+
       - name: 上傳至 GitHub Security Alerts
         uses: github/codeql-action/upload-sarif@v3
         with:
