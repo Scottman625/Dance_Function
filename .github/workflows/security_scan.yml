@@ -12,11 +12,13 @@ jobs:
     steps:
       - name: 檢出代碼
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: 取得最近的變更
         run: |
           git fetch origin master
-          git diff --unified=0 HEAD~1 > changes.diff
+          git diff --unified=0 origin/master > changes.diff
 
       - name: 拉取並運行 Docker 資安掃描
         run: |
