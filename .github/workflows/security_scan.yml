@@ -30,7 +30,7 @@ jobs:
           OPEN_AI_KEY: ${{ secrets.OPEN_AI_KEY }}  # 使用 GitHub Secrets 傳遞密鑰
         run: |
           docker run --rm \
-            -e OPEN_AI_KEY=$OPEN_AI_KEY \  # 傳遞環境變量到 Docker 容器
+            -e OPEN_AI_KEY=$OPEN_AI_KEY \
             -v $(pwd)/changes.diff:/app/changes.diff \
             -v $(pwd)/security_report.sarif:/app/security_report.sarif \
             scottman625/my-security-scanner /app/changes.diff
