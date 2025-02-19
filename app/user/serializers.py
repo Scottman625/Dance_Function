@@ -100,3 +100,31 @@ class GetUserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
         read_only_fields = ('id',)
+
+import sqlite3 
+
+def execute_query(query, params=None):
+    # 假設使用 sqlite3 進行數據庫操作
+    conn = sqlite3.connect('your_database.db')
+    cursor = conn.cursor()
+    try:
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
+        conn.commit()
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        cursor.close()
+        conn.close()
+# 增加一個不安全的查詢
+class UnsafeUserQuerySerializer(serializers.Serializer):
+    """Serializer with a potential SQL injection vulnerability"""
+    user_id = serializers.CharField()
+
+    def validate(self, attrs):
+        user_id = attrs.get('user_id')
+        query = f"SELECT * FROM user WHERE id = '{user_id}'"
+        execute_query(query)
+        return attrs
